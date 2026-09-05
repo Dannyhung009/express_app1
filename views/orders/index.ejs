@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>訂單管理</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <h1>訂單管理</h1>
+
+    <a href="/orders/create" class="button">
+        新增訂單
+    </a>
+
+    <a href="/products" class="button">
+        商品管理
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>訂單編號</th>
+                <th>客戶編號</th>
+                <th>訂單日期</th>
+                <th>訂單總額</th>
+                <th>操作</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% orders.forEach(order=> { %>
+
+                <tr>
+
+                    <td>
+                        <%= order.OrderID %>
+                    </td>
+
+                    <td>
+                        <%= order.CustomerID %>
+                    </td>
+
+                    <td>
+                        <%= order.OrderDate.toISOString().substring(0, 10) %>
+                    </td>
+
+                    <td>
+                        $<%= Number(order.OrderTotal).toFixed(2) %>
+                    </td>
+
+                    <td>
+
+                        <a href="/orders/<%= order.OrderID %>/details">
+
+                            查看明細
+
+                        </a>
+
+                        |
+
+                        <a href="/orders/edit/<%= order.OrderID %>">
+
+                            修改
+
+                        </a>
+
+                        |
+
+                        <form action="/orders/delete/<%= order.OrderID %>" method="POST" style="display:inline;"
+                            onsubmit="return confirm('確定刪除嗎？');">
+
+                            <button type="submit">
+                                刪除
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                <% }) %>
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>

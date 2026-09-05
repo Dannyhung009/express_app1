@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>修改訂單明細</title>
+
+</head>
+
+<body>
+
+    <h1>修改訂單明細</h1>
+
+    <form
+        action="/orders/<%= detail.OrderID %>/details/edit/<%= detail.ProductID %>"
+        method="POST">
+
+        <div>
+
+            <label>
+                商品：
+            </label>
+
+            <input
+                type="text"
+                value="<%= detail.ProductName %>"
+                disabled>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                單價：
+            </label>
+
+            <input
+                type="text"
+                value="<%= detail.UnitPrice %>"
+                disabled>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                數量：
+            </label>
+
+            <input
+                type="number"
+                name="Quantity"
+                value="<%= detail.Quantity %>"
+                min="1"
+                required>
+
+        </div>
+
+        <br>
+
+        <button type="submit">
+            儲存修改
+        </button>
+
+        <a href="/orders/<%= detail.OrderID %>/details">
+            返回
+        </a>
+
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>修改訂單</title>
+
+</head>
+
+<body>
+
+    <h1>修改訂單</h1>
+
+    <form
+        action="/orders/edit/<%= order.OrderID %>"
+        method="POST">
+
+        <div>
+
+            <label>
+                訂單編號：
+            </label>
+
+            <input
+                type="text"
+                value="<%= order.OrderID %>"
+                disabled>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                客戶編號：
+            </label>
+
+            <input
+                type="number"
+                name="CustomerID"
+                value="<%= order.CustomerID %>"
+                required>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                訂單日期：
+            </label>
+
+            <input
+                type="date"
+                name="OrderDate"
+                value="<%= order.OrderDate.toISOString().substring(0, 10) %>"
+                required>
+
+        </div>
+
+        <br>
+
+        <button type="submit">
+            儲存修改
+        </button>
+
+        <a href="/orders">
+            返回
+        </a>
+
+    </form>
+
+</body>
+
+</html>

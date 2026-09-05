@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>新增訂單明細</title>
+
+</head>
+
+<body>
+
+    <h1>
+        訂單 #<%= order.OrderID %> - 新增商品
+    </h1>
+
+    <form
+        action="/orders/<%= order.OrderID %>/details/create"
+        method="POST">
+
+        <div>
+
+            <label>
+                商品：
+            </label>
+
+            <select
+                name="ProductID"
+                required>
+
+                <option value="">
+                    -- 請選擇商品 --
+                </option>
+
+                <% products.forEach(product => { %>
+
+                    <option
+                        value="<%= product.ProductID %>">
+
+                        <%= product.ProductName %>
+                        -
+                        $<%= product.UnitPrice %>
+
+                    </option>
+
+                <% }) %>
+
+            </select>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                數量：
+            </label>
+
+            <input
+                type="number"
+                name="Quantity"
+                min="1"
+                value="1"
+                required>
+
+        </div>
+
+        <br>
+
+        <button type="submit">
+            新增
+        </button>
+
+        <a href="/orders/<%= order.OrderID %>/details">
+            返回
+        </a>
+
+    </form>
+
+</body>
+
+</html>

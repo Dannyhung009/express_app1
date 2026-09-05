@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>新增訂單</title>
+
+</head>
+
+<body>
+
+    <h1>新增訂單</h1>
+
+    <form
+        action="/orders/create"
+        method="POST">
+
+        <div>
+
+            <label>
+                客戶編號：
+            </label>
+
+            <input
+                type="number"
+                name="CustomerID"
+                required>
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>
+                訂單日期：
+            </label>
+
+            <input
+                type="date"
+                name="OrderDate"
+                required>
+
+        </div>
+
+        <br>
+
+        <button type="submit">
+            新增訂單
+        </button>
+
+        <a href="/orders">
+            返回
+        </a>
+
+    </form>
+
+</body>
+
+</html>

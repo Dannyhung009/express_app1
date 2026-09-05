@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>訂單明細</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <h1>
+        訂單 #<%= order.OrderID %>
+    </h1>
+
+    <p>
+        客戶編號：
+        <%= order.CustomerID %>
+    </p>
+
+    <p>
+        訂單日期：
+        <%= order.OrderDate.toISOString().substring(0, 10) %>
+    </p>
+
+
+    <a href="/orders/<%= order.OrderID %>/details/create" class="button">
+
+        新增商品
+
+    </a>
+
+    <a href="/orders" class="button">
+
+        返回訂單
+
+    </a>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>商品編號</th>
+                <th>商品名稱</th>
+                <th>單價</th>
+                <th>數量</th>
+                <th>小計</th>
+                <th>操作</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <% details.forEach(detail=> { %>
+
+                <tr>
+
+                    <td>
+                        <%= detail.ProductID %>
+                    </td>
+
+                    <td>
+                        <%= detail.ProductName %>
+                    </td>
+
+                    <td>
+                        $<%= Number(detail.UnitPrice).toFixed(2) %>
+                    </td>
+
+                    <td>
+                        <%= detail.Quantity %>
+                    </td>
+
+                    <td>
+                        $<%= Number(detail.SubTotal).toFixed(2) %>
+                    </td>
+
+                    <td>
+
+                        <a href="/orders/<%= detail.OrderID %>/details/edit/<%= detail.ProductID %>">
+
+                            修改
+
+                        </a>
+
+                        |
+
+                        <form action="/orders/<%= detail.OrderID %>/details/delete/<%= detail.ProductID %>"
+                            method="POST" style="display:inline;" onsubmit="return confirm('確定刪除嗎？');">
+
+                            <button type="submit">
+                                刪除
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                <% }) %>
+
+        </tbody>
+
+    </table>
+
+
+    <h2>
+        訂單總額：
+        $<%= Number(orderTotal).toFixed(2) %>
+    </h2>
+
+
+</body>
+
+</html>

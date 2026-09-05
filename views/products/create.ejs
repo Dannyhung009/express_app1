@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>新增商品</title>
+
+</head>
+
+<body>
+
+    <h1>新增商品</h1>
+
+    <form action="/products/create" method="POST">
+
+        <div>
+            <label>商品名稱：</label>
+
+            <input
+                type="text"
+                name="ProductName"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>單價：</label>
+
+            <input
+                type="number"
+                name="UnitPrice"
+                step="0.01"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>庫存：</label>
+
+            <input
+                type="number"
+                name="UnitsInStock"
+                required>
+        </div>
+
+        <br>
+
+        <button type="submit">
+            新增
+        </button>
+
+        <a href="/products">
+            返回
+        </a>
+
+    </form>
+
+</body>
+
+</html>
